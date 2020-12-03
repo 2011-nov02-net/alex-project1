@@ -5,9 +5,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using StoreApp.DataModel;
+using Microsoft.EntityFrameworkCore;
+using StoreApp.Library;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using StoreApp.Library.Interfaces;
+
 
 namespace StoreApp.WebApp
 {
@@ -23,7 +28,24 @@ namespace StoreApp.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Setting up database
+            var connectionString = Configuration.GetConnectionString("default");
+            if (connectionString is null)
+            {
+                throw new InvalidOperationException("No connection string 'default' found.");
+            }
+            services.AddDbContext<StoreAppContext>(options => options.UseSqlServer(connectionString));
+
+            //setting up repositories
+            services.AddScoped<ICustomerRepo, CustomerRepository>();
+            services.AddScoped<IProductRepo, ProductRepository>();
+            services.AddScoped<IStoreRepo, StoreRepository>();
+            services.AddScoped<IOrderRepo, OrderRepository>();
+           
+
             services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

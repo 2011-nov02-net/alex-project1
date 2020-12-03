@@ -4,12 +4,13 @@ using StoreApp.DataModel;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using StoreApp.Library.Interfaces;
 
 
 
 namespace StoreApp.Library
 {
-    public class CustomerRepository
+    public class CustomerRepository : ICustomerRepo
     {
         /// <summary>
         /// Database context options to create database context

@@ -4,9 +4,11 @@ using StoreApp.DataModel;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using StoreApp.Library.Interfaces;
+
 namespace StoreApp.Library
 {
-    public class StoreRepository
+    public class StoreRepository : IStoreRepo 
     {
 
         /// <summary>

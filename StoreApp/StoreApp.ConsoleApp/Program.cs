@@ -6,7 +6,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using System.IO;
-
+using StoreApp.Library.Interfaces;
 
 
 namespace StoreApp.ConsoleApp
