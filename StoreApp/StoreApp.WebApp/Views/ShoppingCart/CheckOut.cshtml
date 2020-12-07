@@ -1,24 +1,21 @@
 ﻿@model StoreApp.WebApp.Models.CustomerViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "CheckOut";
 }
 
-<h1>Create</h1>
-
+<h1>Checkout</h1>
 <hr />
 
-@if (ViewData.ContainsKey("AddedCustomer"))
+@if (ViewData.ContainsKey("NoCustomer"))
 {
-    if(ViewData["AddedCustomer"].ToString() == "none")
-    {
-        <p class="text-danger">Customer already exists.</p>
-    }
+    <p class="text-danger">Customer does not exist please register first.</p>
 }
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <h5>Log in to checkout</h5>
+        <form asp-action="CheckOut">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
@@ -36,7 +33,7 @@
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
+                <input type="submit" value="Checkout" class="btn btn-primary" />
             </div>
         </form>
     </div>

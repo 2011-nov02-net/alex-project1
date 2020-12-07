@@ -1,0 +1,40 @@
+﻿@model StoreApp.WebApp.Models.AmountViewModel
+
+@{
+    ViewData["Title"] = "AddToCart";
+}
+
+<h1>@ViewData["Store"]</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddToCart">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.HiddenFor(model => model.StoreId, Model.StoreId)
+                @Html.HiddenFor(model => model.ProducId, Model.ProducId)
+                <h5>@ViewData["Product"]</h5>
+                @if (ViewData.ContainsKey("Failed"))
+                {
+                    <p class="text-danger">Shopping cart must contain products from a single store. Please empty cart or checkout to order from different stores.</p>
+                }
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add To Cart" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Inventory", "Inventory", new { id = Model.StoreId })
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

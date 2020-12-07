@@ -16,13 +16,14 @@ namespace StoreApp.WebApp.Controllers
     public class LocationsController : Controller
     {
 
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<LocationsController> _logger;
         private readonly IStoreRepo _storeRepo;
         private readonly ICustomerRepo _customerRepo;
         private readonly IOrderRepo _orderRepo;
         private readonly IProductRepo _productRepo;
+        private readonly IShoppingCart _shoppingCart;
 
-        public LocationsController(ILogger<HomeController> logger, IStoreRepo StoreRepo, ICustomerRepo CustomerRepo, IOrderRepo OrderRepo, IProductRepo ProductRepo)
+        public LocationsController(ILogger<LocationsController> logger, IStoreRepo StoreRepo, ICustomerRepo CustomerRepo, IOrderRepo OrderRepo, IProductRepo ProductRepo, IShoppingCart ShoppingCart)
         {
 
             _logger = logger;
@@ -30,6 +31,7 @@ namespace StoreApp.WebApp.Controllers
             _customerRepo = CustomerRepo;
             _orderRepo = OrderRepo;
             _productRepo = ProductRepo;
+            _shoppingCart = ShoppingCart;
         }
 
         // GET: LocationsController
@@ -103,5 +105,81 @@ namespace StoreApp.WebApp.Controllers
 
             return View(ViewOrders);
         }
+
+        public IActionResult Inventory(int Id)
+        {
+            var store = _storeRepo.GetStoreById(Id);
+            ViewData["Store"] = store.StoreName;
+            ViewData["StoreId"] = store.StoreId;
+            ViewData["CartAmount"] = _shoppingCart.GetCart().Count;
+
+            List<ProductViewModel> products = new List<ProductViewModel>();
+
+            foreach(var pKVP in store.StoreInventory)
+            {
+                IProduct product = _productRepo.GetProductById(pKVP.Key);
+                products.Add(new ProductViewModel
+                {
+                    Id = product.ProductId,
+                    Name = product.ProductName,
+                    Price = product.Price,
+                    Amount = pKVP.Value
+                });
+            }
+
+            return View(products);
+        }
+
+        public IActionResult AddToCart(int sID, int pID )
+        {
+            var store = _storeRepo.GetStoreById(sID);
+            var product = _productRepo.GetProductById(pID);
+
+            ViewData["Store"] = store.StoreName;
+            ViewData["Product"] = product.ProductName;
+ 
+            AmountViewModel amountViewModel = new AmountViewModel
+            {
+                StoreId = store.StoreId,
+                ProducId = product.ProductId,
+            };
+
+            return View(amountViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddToCart(AmountViewModel viewModel)
+        {
+            var store = _storeRepo.GetStoreById(viewModel.StoreId);
+            var product = _productRepo.GetProductById(viewModel.ProducId);
+
+            ViewData["Store"] = store.StoreName;
+            ViewData["Product"] = product.ProductName;
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(viewModel);
+                }
+
+                bool success = _shoppingCart.AddToCart(viewModel.StoreId, viewModel.ProducId, viewModel.Amount);
+
+                if (!success)
+                {
+                    ViewData["Failed"] = true;
+                    return View(viewModel);
+                } 
+
+
+                return RedirectToAction("Inventory", new { id = viewModel.StoreId });
+            }
+            catch (Exception)
+            {
+
+                ModelState.AddModelError("", "There was a problem registering new customer");
+                return View(viewModel);
+            }
+        }
+
     }
 }

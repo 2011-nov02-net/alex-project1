@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StoreApp.Library.Interfaces;
-
+using Microsoft.Extensions.Logging;
 
 namespace StoreApp.WebApp
 {
@@ -35,14 +35,15 @@ namespace StoreApp.WebApp
             {
                 throw new InvalidOperationException("No connection string 'default' found.");
             }*/
-            services.AddDbContext<StoreAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("default")));
+            services.AddDbContext<StoreAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("default")).LogTo(Console.WriteLine,LogLevel.Information));
 
             //setting up repositories
             services.AddScoped<ICustomerRepo, CustomerRepository>();
             services.AddScoped<IProductRepo, ProductRepository>();
             services.AddScoped<IStoreRepo, StoreRepository>();
             services.AddScoped<IOrderRepo, OrderRepository>();
-           
+            services.AddSingleton<IShoppingCart, ShoppingCart>();
+
 
             services.AddControllersWithViews();
 

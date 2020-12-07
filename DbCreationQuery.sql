@@ -54,7 +54,7 @@ CREATE TABLE OrderProduct (
 
 INSERT INTO CustomerTable(FirstName, LastName, Phone) VALUES
 	('Alex', 'Soto', '(619)730-8241'),
-	('Yesenia', 'Cisneros', '(619)482-7104'),
+	('Yesenia', 'Cisneros', '(626)482-7104'),
 	('Armando', 'Soto', '(619)547-2327');
 	
 

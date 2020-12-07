@@ -151,8 +151,6 @@ namespace StoreApp.WebApp.Controllers
             {
                 
                 ModelState.AddModelError("", "There was a problem registering new customer");
-                // this error should be more specific if possible, e.g. if i can tell it's because
-                // of a duplicate name or something
                 return View(viewModel);
             }
         }
