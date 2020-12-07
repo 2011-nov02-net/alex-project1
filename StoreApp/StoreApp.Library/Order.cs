@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StoreApp.Library
 {
-    [Serializable]
+    
     public class Order
     {
         private readonly int _orderId = 0;

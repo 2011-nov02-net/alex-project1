@@ -4,7 +4,6 @@ using System.Text;
 
 namespace StoreApp.Library
 {
-    [Serializable]
     public class Customer
     {
         private readonly int _customerId = 0;

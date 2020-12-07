@@ -5,7 +5,7 @@ using StoreApp.Library.Interfaces;
 
 namespace StoreApp.Library
 {
-    [Serializable]
+    
     public class Product : IProduct
     {
         private readonly int _productId = 0;

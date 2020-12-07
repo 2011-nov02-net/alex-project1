@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<CustomerViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,7 +8,46 @@
     <h1 class="display-4">Welcome</h1>
 </div>
 
-<div>
-    <p>Number of Stores available: @ViewData["totalStores"] </p>
-    <p>Number of Customers Registered: @ViewData["totalCustomers"] </p>
-</div>
+<h1 class="text-dark">Customers</h1>
+
+<form asp-action="Index">
+    <div class="input-group">
+        <input type="search" placeholder="First Name" name="First" />
+        <input type="search" placeholder="Last Name" name="Last" />
+        <input type="submit" value="Search" />
+
+    </div>
+</form>
+<a asp-action="Create">Register</a>
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>@Html.ActionLink("Order History", "Details", new { id = item.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

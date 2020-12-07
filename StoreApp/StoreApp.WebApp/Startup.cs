@@ -30,12 +30,12 @@ namespace StoreApp.WebApp
         {
 
             //Setting up database
-            var connectionString = Configuration.GetConnectionString("default");
+            /*var connectionString = Configuration.GetConnectionString("default");
             if (connectionString is null)
             {
                 throw new InvalidOperationException("No connection string 'default' found.");
-            }
-            services.AddDbContext<StoreAppContext>(options => options.UseSqlServer(connectionString));
+            }*/
+            services.AddDbContext<StoreAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("default")));
 
             //setting up repositories
             services.AddScoped<ICustomerRepo, CustomerRepository>();
@@ -77,3 +77,4 @@ namespace StoreApp.WebApp
         }
     }
 }
+
