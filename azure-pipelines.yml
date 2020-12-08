@@ -18,6 +18,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+
 steps:
 - task: UseDotNet@2
   displayName: dotnet sdk 5.x
