@@ -49,6 +49,7 @@ namespace StoreApp.WebApp.Controllers
 
             }
 
+            _logger.LogInformation("Getting cart information from ShoppingCart/Index");
             return View(viewModel);
         }
 
@@ -56,6 +57,7 @@ namespace StoreApp.WebApp.Controllers
         {
             _shoppingCart.EmptyCart();
 
+            _logger.LogInformation("Cart cleared from ShoppingCart/EmptyCart");
             return RedirectToAction("Index");
         }
 
@@ -71,6 +73,7 @@ namespace StoreApp.WebApp.Controllers
             {
                 if (!ModelState.IsValid)
                 {
+                    _logger.LogInformation("Invalid Model State while trying to check out returning checkout view");
                     return View(viewModel);
                 }
 
@@ -93,6 +96,8 @@ namespace StoreApp.WebApp.Controllers
                 bool orSuccess = _orderRepo.AddNewOrder(order);
 
                 _shoppingCart.EmptyCart();
+
+                _logger.LogInformation("Order placed successfully returning to cart");
                 return RedirectToAction("Index");
 
 
@@ -101,6 +106,7 @@ namespace StoreApp.WebApp.Controllers
             {
 
                 ModelState.AddModelError("", "There was a problem Logging In");
+                _logger.LogWarning("Error Logging in Customer");
                 return View(viewModel);
             }
 

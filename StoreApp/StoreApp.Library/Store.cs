@@ -25,13 +25,13 @@ namespace StoreApp.Library
 
         public Dictionary<int, int> StoreInventory => _storeInventory;
 
-        public bool AddToInventory(IProduct product, int amount)
+        public bool AddToInventory(int productId, int amount)
         {
-            if (!_storeInventory.ContainsKey(product.ProductId))
+            if (!_storeInventory.ContainsKey(productId))
             {
                 if(amount >= 0)
                 {
-                    _storeInventory.Add(product.ProductId, amount);
+                    _storeInventory.Add(productId, amount);
                     return true;
                 }
                 return false;

@@ -12,6 +12,6 @@ namespace StoreApp.Library.Interfaces
 
         decimal Price { get; }
 
-        void UpdatePrice(int newPrice);
+        void UpdatePrice(decimal newPrice);
     }
 }

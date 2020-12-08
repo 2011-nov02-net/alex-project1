@@ -27,7 +27,7 @@ namespace StoreApp.Library
 
         public decimal Price => _price;
 
-        public void UpdatePrice(int newPrice)
+        public void UpdatePrice(decimal newPrice)
         {
             _price = newPrice;
         }

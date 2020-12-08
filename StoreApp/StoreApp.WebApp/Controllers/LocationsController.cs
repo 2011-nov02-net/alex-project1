@@ -44,6 +44,7 @@ namespace StoreApp.WebApp.Controllers
                 Inventory = s.StoreInventory
             });
 
+            _logger.LogInformation("Retrieving stores from Locations/Index");
             return View(stores);
         }
 
@@ -65,6 +66,7 @@ namespace StoreApp.WebApp.Controllers
                 return View(filteredStores);
             }
 
+            _logger.LogInformation("Retrieving filtered stores from Locations/Index");
             return View(stores);
         }
 
@@ -103,6 +105,7 @@ namespace StoreApp.WebApp.Controllers
                 }
             }
 
+            _logger.LogInformation("Retrieving store order history from Locations/Details");
             return View(ViewOrders);
         }
 
@@ -127,6 +130,7 @@ namespace StoreApp.WebApp.Controllers
                 });
             }
 
+            _logger.LogInformation("Retrieving store inventory from Locations/Inventory");
             return View(products);
         }
 
@@ -144,6 +148,7 @@ namespace StoreApp.WebApp.Controllers
                 ProducId = product.ProductId,
             };
 
+            _logger.LogInformation("Displaying form to retrieve desired product amout from Locations/AddToCart");
             return View(amountViewModel);
         }
 
@@ -159,6 +164,7 @@ namespace StoreApp.WebApp.Controllers
             {
                 if (!ModelState.IsValid)
                 {
+                    _logger.LogInformation("Model state is invalid product amount invalid");
                     return View(viewModel);
                 }
 
@@ -175,8 +181,8 @@ namespace StoreApp.WebApp.Controllers
             }
             catch (Exception)
             {
-
-                ModelState.AddModelError("", "There was a problem registering new customer");
+                _logger.LogWarning("Error adding product to cart");
+                ModelState.AddModelError("", "There was a problem adding item to cart");
                 return View(viewModel);
             }
         }
