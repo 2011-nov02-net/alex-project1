@@ -15,13 +15,13 @@ namespace StoreApp.WebApp.Controllers
     public class ShoppingCartController : Controller
     {
         // GET: ShoppingCartController
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ShoppingCartController> _logger;
         private readonly IStoreRepo _storeRepo;
         private readonly ICustomerRepo _customerRepo;
         private readonly IOrderRepo _orderRepo;
         private readonly IProductRepo _productRepo;
         private IShoppingCart _shoppingCart;
-        public ShoppingCartController(ILogger<HomeController> logger, IStoreRepo StoreRepo, ICustomerRepo CustomerRepo, IOrderRepo OrderRepo, IProductRepo ProductRepo, IShoppingCart ShoppingCart)
+        public ShoppingCartController(ILogger<ShoppingCartController> logger, IStoreRepo StoreRepo, ICustomerRepo CustomerRepo, IOrderRepo OrderRepo, IProductRepo ProductRepo, IShoppingCart ShoppingCart)
         {
 
             _logger = logger;
