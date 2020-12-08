@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StoreApp.DataModel\StoreApp.DataModel.csproj" />
     <ProjectReference Include="..\StoreApp.Library\StoreApp.Library.csproj" />
+    <ProjectReference Include="..\StoreApp.WebApp\StoreApp.WebApp.csproj" />
   </ItemGroup>
 
 </Project>

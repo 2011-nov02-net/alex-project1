@@ -6,9 +6,15 @@
 
 <h1>Cart</h1>
 
+
+
+
 @if (!Model.Any())
 {
+<div class="text-center">
     <p>Your cart is empty.</p>
+</div>
+    
 }
 else
 {
@@ -53,6 +59,9 @@ else
     <br />
     <div class="text-center">
         @Html.ActionLink("Checkout", "CheckOut")
+        <br />
+        <br />
+        @Html.ActionLink("Clear Cart", "EmptyCart")
     </div>
 
 }

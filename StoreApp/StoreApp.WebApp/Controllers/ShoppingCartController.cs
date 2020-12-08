@@ -52,6 +52,13 @@ namespace StoreApp.WebApp.Controllers
             return View(viewModel);
         }
 
+        public ActionResult EmptyCart()
+        {
+            _shoppingCart.EmptyCart();
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult CheckOut()
         {
             return View();
