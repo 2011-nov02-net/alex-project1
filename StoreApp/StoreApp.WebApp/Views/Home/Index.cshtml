@@ -10,15 +10,14 @@
 
 <h1 class="text-dark">Customers</h1>
 
-<form asp-action="Index">
+<form asp-action="Index" class="form-inline my-2 my-lg-0">
     <div class="input-group">
-        <input type="search" placeholder="First Name" name="First" />
-        <input type="search" placeholder="Last Name" name="Last" />
-        <input type="submit" value="Search" />
+        <input class="form-control mr-sm-2" type="search" placeholder="First Name" name="First" />
+        <input class="form-control mr-sm-2" type="search" placeholder="Last Name" name="Last" />
+        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search" />
 
     </div>
 </form>
-<a asp-action="Create">Register</a>
 <br />
 <br />
 <table class="table">
@@ -48,6 +47,12 @@
         }
     </tbody>
 </table>
+<br />
+<br />
+
+<div class="text-center">
+    <a asp-action="Create">Register new Customer</a>
+</div>
 
 
 

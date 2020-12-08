@@ -36,7 +36,7 @@ else
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price)
+                        $@Html.DisplayFor(modelItem => item.Price)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Amount)
@@ -49,8 +49,9 @@ else
             }
         </tbody>
     </table>
-
-    <div>
+    <br />
+    <br />
+    <div class="text-center">
         @Html.ActionLink("Checkout", "CheckOut")
     </div>
 

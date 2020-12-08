@@ -22,29 +22,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.ActionLink("Add to Cart", "AddToCart", new { sID = ViewData["StoreId"], pID = item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Add to Cart", "AddToCart", new { sID = ViewData["StoreId"], pID = item.Id })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
 <div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-<div>
     Total Cart Amount: @ViewData["CartAmount"]
+</div>
+<br />
+<br />
+<div class="text-center">
+    <a asp-action="Index">Back to List</a>
+    <br />
+    <br />
+    <a asp-area="" asp-controller="ShoppingCart" asp-action="Index">Shopping Cart</a>
 </div>
