@@ -11,13 +11,21 @@
 
 @if (!Model.Any())
 {
-<div class="text-center">
-    <p>Your cart is empty.</p>
-</div>
-    
+    <div class="text-center">
+        <p>Your cart is empty.</p>
+    </div>
+
 }
 else
 {
+    @if (TempData.ContainsKey("noStock"))
+    {
+        var x = TempData["noStock"] as string;
+        if (x == "true")
+        {
+            <p class="text-danger">One or more of your product amounts exceeds current stock in this location.</p>
+        }
+    }
     <table class="table">
         <thead>
             <tr>
@@ -49,7 +57,7 @@ else
                     </td>
                     <td>
                         @*Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                     </td>
                 </tr>
             }

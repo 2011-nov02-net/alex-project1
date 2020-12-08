@@ -63,6 +63,17 @@ namespace StoreApp.WebApp.Controllers
 
         public IActionResult CheckOut()
         {
+            var store = _storeRepo.GetStoreById(_shoppingCart.StoreId);
+            foreach (var kvp in _shoppingCart.GetCart())
+            {
+                if(kvp.Value > store.StoreInventory[kvp.Key])
+                {
+                    TempData["noStock"] = "true";
+                    return RedirectToAction("Index");
+                }
+            }
+
+            TempData["noStock"] = "false";
             return View();
         }
 
