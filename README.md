@@ -47,7 +47,7 @@ Build:
 * To see list of stores you can navigate to the stores page by clicking the stores button in the navigation bar
 * There you can see a locations order history and inventory
 * To add an item to cart you can select the add to cart option on a specific product which will prompt you for an amount
-* To place the order you can navigate to the cart page by clicking the cart button in the navigation bar and then clicking the checkout option which will prompt you        to enter your registration details
+* To place the order you can navigate to the cart page by clicking the shopping cart button in the navigation bar or at the bottom of the inventory page and then clicking the checkout option which will prompt you to enter your registration details
 
 ## License
 
