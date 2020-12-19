@@ -38,6 +38,8 @@ Current Live Version: https://alex-storeapp.azurewebsites.net
 Build:
 (Windows)
 * git clone https://github.com/2011-nov02-net/alex-project1
+* set up database with sql file in repo
+* add connection string to the project
 * run with dotnet run
 
 ## Usage
